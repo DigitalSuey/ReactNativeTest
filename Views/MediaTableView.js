@@ -1,6 +1,7 @@
 // IMPORT
 import React from 'react';
 import {
+  ActivityIndicatorIOS,
   AlertIOS,
   Text,
   TextInput,
@@ -26,10 +27,13 @@ class SearchBar extends React.Component {
           style={styles.tableView.searchBarInput}
           autoCapitalize="none"
           autoCorrect={false}
-          placeholder="Search things on iTunes"
+          placeholder="Search movies on iTunes"
           returnKeyType="search"
           enablesReturnKeyAutomatically={true}
           onEndEditing={this.props.onSearch}
+        />
+        <ActivityIndicatorIOS
+          animating={this.props.isLoading}
         />
       </View>
     );
@@ -37,8 +41,16 @@ class SearchBar extends React.Component {
 }
 
 function MediaTableView() {
-  const mixins  = [TimerMixin];
+  const mixins = [TimerMixin];
   let timeoutId = null;
+
+  function getInitialState() {
+    return {
+      isLoading: false,
+      query: '',
+      resultsData: [],
+    };
+  }
 
   function urlForQuery(query) {
     if (query.length > 2) {
@@ -53,10 +65,47 @@ function MediaTableView() {
 
     timeoutId = null;
 
+    function setState({ query: query }) {
+      this.state = {
+        query: query
+      };
+    }
+
+    function resolve(responseData) {
+      LOADING[query] = false;
+      resultsCache.dataForQuery[query] = responseData.results;
+
+      AlertIOS.alert('Search result count:', `${cachedResultsForQuery.length} results`);
+      console.log('result');
+      setState({
+        isLoading: false,
+        resultsData: resultsCache.dataForQuery[query],
+      });
+    }
+
+    function reject() {
+      LOADING[query] = false;
+      resultsCache.dataForQuery[query] = undefined;
+
+      setState({
+        isLoading: false,
+      });
+    }
+
     if (cachedResultsForQuery) {
       if (!LOADING[query]) {
+
         AlertIOS.alert('Search result count:', `${cachedResultsForQuery.length} cached results`);
-        // return cachedResultsForQuery
+        console.log('cached result');
+
+        setState({
+          isLoading: false,
+          resultsData: cachedResultsForQuery,
+        });
+      } else {
+        setState({
+          isLoading: true,
+        });
       }
     } else {
       const queryURL = urlForQuery(query);
@@ -65,6 +114,10 @@ function MediaTableView() {
         return;
       }
 
+      setState({
+        isLoading: true,
+      });
+
       LOADING[query] = true;
       resultsCache.dataForQuery[query] = null;
 
@@ -72,18 +125,6 @@ function MediaTableView() {
         .then(response => response.json())
         .then(resolve)
         .catch(reject);
-
-      function resolve(responseData) {
-        LOADING[query] = false;
-        resultsCache.dataForQuery[query] = responseData.results;
-        AlertIOS.alert('Search result count', `${responseData.resultCount} results.`);
-      }
-
-      function reject(error) {
-        LOADING[query] = false;
-        resultsCache.dataForQuery[query] = undefined;
-        console.log(error);
-      }
     }
   }
 
@@ -92,8 +133,8 @@ function MediaTableView() {
       <SearchBar
         onSearch={(event) => {
           const searchValue = event.nativeEvent.text;
-          this.clearTimeout(timeoutId);
-          timeoutId = this.setTimeout(() => fetchData(searchValue), 1000);
+          clearTimeout(timeoutId);
+          timeoutId = setTimeout(() => fetchData(searchValue), 1000);
         }}
       />
       <Text>
