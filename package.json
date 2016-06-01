@@ -8,7 +8,8 @@
   "dependencies": {
     "react": "^15.0.2",
     "react-native": "^0.26.2",
-    "react-timer-mixin": "^0.13.3"
+    "react-timer-mixin": "^0.13.3",
+    "redux": "^3.5.2"
   },
   "devDependencies": {
     "eslint": "^2.10.2",
