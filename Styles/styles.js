@@ -1,7 +1,9 @@
 import global from './global';
-import tableView from './tableView';
+import SearchBarView from './SearchBarView';
+import MovieListView from './MovieListView';
 
 export default {
   global,
-  tableView,
+  SearchBarView,
+  MovieListView,
 };

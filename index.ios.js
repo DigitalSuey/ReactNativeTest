@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 
 import styles from './Styles/styles';
-import MediaTableView from './Views/MediaTableView';
+import SearchController from './Controllers/SearchController';
 
 // COMPONENTS
 StatusBarIOS.setStyle('light-content');
@@ -22,11 +22,11 @@ function TestReactNative() {
       tintColor="#efefef"
       titleTextColor="#efefef"
       initialRoute={{
-        component: MediaTableView,
+        component: SearchController,
         title: 'React Native Test',
         rightButtonTitle: 'Search',
         onRightButtonPress: () => AlertIOS.alert(
-          'Search Alert', 'You wanted an alert? Here\'s an alert'
+          'Search Alert', 'This is an alert'
         ),
       }}
     />
