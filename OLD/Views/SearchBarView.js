@@ -6,19 +6,25 @@ import {
   View,
 } from 'react-native';
 import Styles from '../Styles/styles';
+import Actions, { fetchMovies } from '../Actions/index';
+
+import { createStore } from 'redux';
+
+const store = createStore(Actions);
 
 // COMPONENTS
-class SearchBarView extends React.Component {
+export default class SearchBarView extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      isLoading: false,
+      isFetching: false,
     };
   }
 
   emitEndEditingEvent() {
     // TODO: Emit an event
+    store.dispatch();
   }
 
   render() {
@@ -33,10 +39,8 @@ class SearchBarView extends React.Component {
           enablesReturnKeyAutomatically
           onEndEditing={this.emitEndEditingEvent}
         />
-        <ActivityIndicatorIOS animating={this.state.isLoading} />
+        <ActivityIndicatorIOS animating={this.state.isFetching} />
       </View>
     );
   }
 }
-
-export default SearchBarView;

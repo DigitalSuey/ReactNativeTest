@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import {
   Image,
   ListView,
@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import Styles from '../Styles/styles';
 
-class MovieListView extends React.Component {
+export default class MovieListView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,31 +18,15 @@ class MovieListView extends React.Component {
     };
   }
 
-  // componentDidMount() {
-  //   this.fetchData();
-  // }
-  //
-  // fetchData() {
-  //   fetch(REQUEST_URL)
-  //     .then((response) => response.json())
-  //     .then((responseData) => {
-  //       this.setState({
-  //         dataSource: this.state.dataSource.cloneWithRows(responseData.movies),
-  //         loaded: true,
-  //       });
-  //     })
-  //     .done();
-  // }
-  //
-  // renderLoadingView() {
-  //   return (
-  //     <View style={styles.container}>
-  //       <Text>
-  //         Loading movies...
-  //       </Text>
-  //     </View>
-  //   );
-  // }
+  renderLoadingView() {
+    return (
+      <View style={Styles.container}>
+        <Text>
+          Loading movies...
+        </Text>
+      </View>
+    );
+  }
 
   renderMovie(data) {
     return (
@@ -74,4 +58,20 @@ class MovieListView extends React.Component {
   }
 }
 
-export default MovieListView;
+// MovieListView.propTypes = {
+//   isLoading: PropTypes.bool.isRequired,
+//   hasLoaded: PropTypes.bool.isRequired,
+//   dataSource: PropTypes.arrayOf({
+//     posters: PropTypes.arrayOf({
+//       thumbnail: PropTypes.string.isRequired,
+//     }).isRequired
+//     title: PropTypes.string.isRequired,
+//     year: PropTypes.string.isRequired
+//   }).isRequired,
+//   searchButtonDidTouchUpInside: PropTypes.function.isRequired,
+// };
+//
+// MovieListView.defaultProps = {
+//   isLoading: false,
+//   hasLoaded: false,
+// };

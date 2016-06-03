@@ -1,4 +1,3 @@
-// IMPORT
 import React from 'react';
 import {
   AlertIOS,
@@ -9,15 +8,20 @@ import DescriptionView from '../Views/DescriptionView';
 import SearchBarView from '../Views/SearchBarView';
 import MovieListView from '../Views/MovieListView';
 
-// CONSTANTS
+import { createStore } from 'redux';
+
+const store = createStore(Actions);
+
 const API_URL = 'https://itunes.apple.com/search';
 const LOADING = {};
 var resultsCache = {
   dataForQuery: {},
 };
 
-// COMPONENTS
-class SearchController extends React.Component {
+// COMPONENT
+export default class SearchController extends React.Component {
+  // this.store.subscribe(fetchData);
+
   urlForQuery(query) {
     if (query.length > 2) {
       return `${API_URL}?media=movie&term=${encodeURIComponent(query)}`;
@@ -93,9 +97,8 @@ class SearchController extends React.Component {
       <View style={Styles.global.content}>
         <SearchBarView onSearch={SearchController.handleSearchEvent} />
         <DescriptionView />
+        <MovieListView />
       </View>
     );
   }
 }
-
-export default SearchController;

@@ -6,6 +6,7 @@ export default StyleSheet.create({
   },
 
   content: {
+    marginTop: 65,
     backgroundColor: '#efefef',
     flex: 1,
   },
