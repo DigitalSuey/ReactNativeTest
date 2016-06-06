@@ -1,22 +1,18 @@
 // IMPORT
 import React from 'react';
-// import Provider from 'react-redux';
-// import configureStore from '../store';
+import { Provider } from 'react-redux';
+import configureStore from '../store';
 import App from '../containers/app';
 
-// const store = configureStore();
+const store = configureStore();
 
 // COMPONENT
 function Root() {
   return (
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   );
 }
 
 export default Root;
-
-/*
-<Provider store={store}>
-  <App />
-</Provider>
-*/

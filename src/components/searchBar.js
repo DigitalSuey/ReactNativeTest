@@ -1,10 +1,14 @@
 // IMPORT
-import React, { Component, PropTypes } from 'react';
+import React, {
+  Component,
+  PropTypes,
+} from 'react';
+
 import {
-  ActivityIndicatorIOS,
   TextInput,
   View,
 } from 'react-native';
+
 import styles from '../styles';
 
 // COMPONENTS
@@ -14,26 +18,21 @@ class SearchBar extends Component {
       <View style={styles.searchBar.searchBar}>
         <TextInput
           style={styles.searchBar.searchBarInput}
+          ref="search"
           autoCapitalize="none"
           autoCorrect={false}
           placeholder="Search movies on iTunes"
           returnKeyType="search"
           enablesReturnKeyAutomatically
-          onEndEditing={this.props.onSearch}
+          onEndEditing={(e) => this.props.search(e.nativeEvent.text)}
         />
-        <ActivityIndicatorIOS animating={this.props.isLoading} />
       </View>
     );
   }
 }
 
 SearchBar.PropTypes = {
-  isLoading: PropTypes.bool.isRequired,
-  onSearch: PropTypes.func.isRequired,
-};
-
-SearchBar.defaultProps = {
-  isLoading: false,
+  search: PropTypes.func.isRequired,
 };
 
 export default SearchBar;

@@ -2,25 +2,33 @@ import React from 'react';
 import {
   View,
 } from 'react-native';
+import { connect } from 'react-redux';
+
 import SearchBar from '../components/searchBar';
 import MovieCell from '../components/movieCell';
+import search from '../actions' ;
+
 
 // COMPONENT
 class MovieList extends React.Component {
   render() {
     return (
       <View>
-        <SearchBar />
-        <MovieCell />
+        <SearchBar search={this.props.search} />
+        <MovieCell {...this.props} />
       </View>
     );
   }
 }
 
-/*
-<SearchBarView onSearch={SearchController.handleSearchEvent} />
-<DescriptionView />
-<MovieListView />
-*/
+function mapStateToProps(state) {
+  const { data, isLoading, error } = state.movies;
 
-export default MovieList;
+  return {
+    data,
+    isLoading,
+    error,
+  };
+}
+
+export default connect(mapStateToProps, { search })(MovieList);
