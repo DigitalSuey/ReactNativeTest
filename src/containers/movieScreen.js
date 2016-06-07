@@ -5,17 +5,18 @@ import {
 import { connect } from 'react-redux';
 
 import SearchBar from '../components/searchBar';
-import MovieCell from '../components/movieCell';
+import MovieList from '../components/movieList';
 import search from '../actions' ;
 
-
 // COMPONENT
-class MovieList extends React.Component {
+class MovieScreen extends React.Component {
   render() {
     return (
       <View>
-        <SearchBar search={this.props.search} />
-        <MovieCell {...this.props} />
+        <SearchBar
+          search={this.props.search}
+        />
+        <MovieList {...this.props} />
       </View>
     );
   }
@@ -31,4 +32,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { search })(MovieList);
+export default connect(mapStateToProps, { search })(MovieScreen);

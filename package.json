@@ -8,6 +8,8 @@
   "dependencies": {
     "react": "^15.0.2",
     "react-native": "^0.26.2",
+    "react-native-camera": "git+https://github.com/lwansbrough/react-native-camera.git",
+    "react-native-image-picker": "^0.18.17",
     "react-redux": "^4.4.5",
     "react-timer-mixin": "^0.13.3",
     "redux": "^3.5.2",

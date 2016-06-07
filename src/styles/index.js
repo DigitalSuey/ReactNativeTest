@@ -1,9 +1,11 @@
 import global from './global';
-import searchBar from './searchBar';
+import camera from './camera';
 import movieList from './movieList';
+import searchBar from './searchBar';
 
 export default {
+  camera,
   global,
-  searchBar,
   movieList,
+  searchBar,
 };
