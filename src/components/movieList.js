@@ -1,17 +1,17 @@
 import React from 'react';
 import {
-  Image,
   ListView,
-  Text,
-  TouchableHighlight,
   View,
 } from 'react-native';
 import styles from '../styles';
+import MovieCell from '../components/movieCell';
 import MovieDetail from '../components/movieDetail';
 
 export default class MovieListView extends React.Component {
   constructor(props) {
     super(props);
+
+    this.renderCell = this.renderCell.bind(this);
 
     this.dataSource = new ListView.DataSource({
       rowHasChanged: (row1, row2) => row1 !== row2,
@@ -23,15 +23,12 @@ export default class MovieListView extends React.Component {
   }
 
   onHighlight() {
-
   }
 
   onDeHighlight() {
-
   }
 
   selectRow(data) {
-    console.log('navigator', this.props.navigator);
     this.props.navigator.push({
       title: data.trackName,
       component: MovieDetail,
@@ -39,35 +36,27 @@ export default class MovieListView extends React.Component {
     });
   }
 
-  renderMovie(data) {
+  renderCell(data) {
     return (
-      <TouchableHighlight
-        onShowUnderlay={this.onHighlight}
-        onHideUnderlay={this.onDeHighlight}
+      <MovieCell
+        data={data}
         onSelect={() => this.selectRow(data)}
-      >
-        <View style={styles.movieList.container} >
-          <Image
-            source={{ uri: data.artworkUrl100 }}
-            style={styles.movieList.thumbnail}
-          />
-          <View style={styles.movieList.rightContainer}>
-            <Text style={styles.movieList.title}>{data.trackName}</Text>
-            <Text style={styles.movieList.year}>{data.artistName}</Text>
-          </View>
-        </View>
-      </TouchableHighlight>
+        onHighlight={this.onHighlight}
+        onDeHighlight={this.onDeHighlight}
+      />
     );
   }
 
-  renderSeparator(sectionId, rowId, adjacentRowIsHighlited) {
+  renderSeparator(sectionId, rowId, adjacentRowHighlighted) {
+    var style = styles.movieList.rowSeparator;
+    if (adjacentRowHighlighted) {
+      style = [style, styles.movieList.rowSeparatorHighlighted];
+    }
+
     return (
       <View
         key={`SEP_${sectionId}_${rowId}`}
-        style={[
-          styles.movieList.rowSeparator,
-          styles.movieList.adjecentRowHighlighted && styles.movieList.rowSeparatorHighlighted,
-        ]}
+        style={style}
       />
     );
   }
@@ -79,7 +68,7 @@ export default class MovieListView extends React.Component {
     return (
       <ListView
         dataSource={this.dataSource}
-        renderRow={this.renderMovie}
+        renderRow={this.renderCell}
         renderSeparator={this.renderSeparator}
         keyboardDismissMode="on-drag"
         automaticallyAdjustContentInsets={false}
@@ -94,4 +83,5 @@ MovieListView.propTypes = {
   isLoading: React.PropTypes.bool.isRequired,
   error: React.PropTypes.bool.isRequired,
   search: React.PropTypes.func.isRequired,
+  navigator: React.PropTypes.object.isRequired,
 };

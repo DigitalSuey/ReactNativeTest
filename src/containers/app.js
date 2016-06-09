@@ -4,14 +4,11 @@ import {
   AlertIOS,
   NavigatorIOS,
   StatusBarIOS,
-  Text,
-  View,
 } from 'react-native';
 import styles from '../styles';
 import MovieScreen from './movieScreen';
 import CameraView from '../components/cameraView';
-
-// const CameraRollView = require('./CameraRollView');
+import CameraRollView from '../components/cameraRollView';
 
 const BUTTONS = [
   'Camera',
@@ -25,7 +22,6 @@ const CANCEL_INDEX = 4;
 
 StatusBarIOS.setStyle('light-content');
 
-// COMPONENT
 class App extends React.Component {
   showActionSheet() {
     ActionSheetIOS.showActionSheetWithOptions({
@@ -34,8 +30,6 @@ class App extends React.Component {
       destructiveButtonIndex: DESTRUCTIVE_INDEX,
     },
     (index) => {
-      console.log('tapped on button >>>', BUTTONS[index], index);
-
       switch (index) {
         case 0:
           this.renderCameraView();
@@ -57,17 +51,14 @@ class App extends React.Component {
   }
 
   renderCameraView() {
-
+    return (
+      <CameraView />
+    );
   }
 
   renderCameraRollView() {
-    return (
-      <View style={styles.container}>
-        <Text>
-          Loading movies...
-        </Text>
-      </View>
-    );
+    const lala = <CameraRollView />;
+    console.log(lala);
   }
 
   render() {
@@ -78,7 +69,7 @@ class App extends React.Component {
         tintColor="#efefef"
         titleTextColor="#efefef"
         initialRoute={{
-          component: MovieScreen,
+          component: CameraRollView,
           title: 'React Native Test',
           rightButtonTitle: 'Button',
           onRightButtonPress: () => this.showActionSheet(),

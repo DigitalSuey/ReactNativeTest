@@ -3,12 +3,10 @@ import {
   View,
 } from 'react-native';
 import { connect } from 'react-redux';
-
 import SearchBar from '../components/searchBar';
 import MovieList from '../components/movieList';
 import search from '../actions' ;
 
-// COMPONENT
 class MovieScreen extends React.Component {
   render() {
     return (
@@ -33,3 +31,7 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, { search })(MovieScreen);
+
+MovieScreen.propTypes = {
+  search: React.PropTypes.func.isRequired,
+};

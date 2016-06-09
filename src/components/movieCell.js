@@ -1,97 +1,45 @@
 import React from 'react';
 import {
   Image,
-  ListView,
   Text,
+  Platform,
   TouchableHighlight,
+  TouchableNativeFeedback,
   View,
 } from 'react-native';
 import styles from '../styles';
-import MovieDetail from '../components/movieDetail';
 
-export default class MovieListView extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.dataSource = new ListView.DataSource({
-      rowHasChanged: (row1, row2) => row1 !== row2,
-    });
-  }
-
-  componentDidMount() {
-    this.props.search();
-  }
-
-  onHighlight() {
-
-  }
-
-  onDeHighlight() {
-
-  }
-
-  selectRow(data) {
-    console.log('navigator', this.props.navigator);
-    this.props.navigator.push({
-      title: data.trackName,
-      component: MovieDetail,
-      passProps: { data },
-    });
-  }
-
-  renderMovie(data) {
-    return (
-      <TouchableHighlight
-        onShowUnderlay={this.onHighlight}
-        onHideUnderlay={this.onDeHighlight}
-        onSelect={() => this.selectRow(data)}
-      >
-        <View style={styles.movieList.container} >
-          <Image
-            source={{ uri: data.artworkUrl100 }}
-            style={styles.movieList.thumbnail}
-          />
-          <View style={styles.movieList.rightContainer}>
-            <Text style={styles.movieList.title}>{data.trackName}</Text>
-            <Text style={styles.movieList.year}>{data.artistName}</Text>
-          </View>
-        </View>
-      </TouchableHighlight>
-    );
-  }
-
-  renderSeparator(sectionId, rowId, adjacentRowIsHighlited) {
-    return (
-      <View
-        key={`SEP_${sectionId}_${rowId}`}
-        style={[
-          styles.movieList.rowSeparator,
-          styles.movieList.adjecentRowHighlighted && styles.movieList.rowSeparatorHighlighted,
-        ]}
-      />
-    );
-  }
-
+export default class MovieCell extends React.Component {
   render() {
     const { data } = this.props;
-    this.dataSource = this.dataSource.cloneWithRows(data || []);
+    const TouchableElement = (Platform.OS === 'ios') ? TouchableHighlight : TouchableNativeFeedback;
 
     return (
-      <ListView
-        dataSource={this.dataSource}
-        renderRow={this.renderMovie}
-        renderSeparator={this.renderSeparator}
-        keyboardDismissMode="on-drag"
-        automaticallyAdjustContentInsets={false}
-        style={styles.movieList.listView}
-      />
+      <View>
+        <TouchableElement
+          onPress={this.props.onSelect}
+          onShowUnderlay={this.props.onHighlight}
+          onHideUnderlay={this.props.onDeHighlight}
+        >
+          <View style={styles.movieList.container} >
+            <Image
+              source={{ uri: data.artworkUrl100 }}
+              style={styles.movieList.thumbnail}
+            />
+            <View style={styles.movieList.rightContainer}>
+              <Text style={styles.movieList.title}>{data.trackName}</Text>
+              <Text style={styles.movieList.year}>{data.artistName}</Text>
+            </View>
+          </View>
+        </TouchableElement>
+      </View>
     );
   }
 }
 
-MovieListView.propTypes = {
-  data: React.PropTypes.array.isRequired,
-  isLoading: React.PropTypes.bool.isRequired,
-  error: React.PropTypes.bool.isRequired,
-  search: React.PropTypes.func.isRequired,
+MovieCell.propTypes = {
+  data: React.PropTypes.object.isRequired,
+  onSelect: React.PropTypes.func.isRequired,
+  onHighlight: React.PropTypes.func,
+  onDeHighlight: React.PropTypes.func,
 };

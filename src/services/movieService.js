@@ -5,7 +5,7 @@ function urlForQuery(query) {
     return `${API_URL}?media=movie&term=${encodeURIComponent(query)}`;
   }
 
-  return `${API_URL}?media=movie`;
+  return `${API_URL}?media=movie&term=alien`;
 }
 
 function fetchData(query) {
@@ -13,7 +13,9 @@ function fetchData(query) {
 
   return fetch(url)
     .then(response => response.json())
-    .then(response => response.results)
+    .then((response) => {
+      return response.results.filter((e) => e.wrapperType !== 'collection');
+    })
     .catch(response => console.log('ERROR', response));
 }
 
