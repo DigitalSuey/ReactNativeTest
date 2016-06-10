@@ -36,7 +36,7 @@ class App extends React.Component {
           break;
 
         case 1:
-          this.renderCameraView();
+          this.renderCameraRollView();
           break;
 
         case 2:
@@ -51,26 +51,30 @@ class App extends React.Component {
   }
 
   renderCameraView() {
-    return (
-      <CameraView />
-    );
+    this.refs.nav.push({
+      title: 'Take photo',
+      component: CameraView,
+    });
   }
 
   renderCameraRollView() {
-    const lala = <CameraRollView />;
-    console.log(lala);
+    this.refs.nav.push({
+      title: 'Take photo',
+      component: CameraRollView,
+    });
   }
 
   render() {
     return (
       <NavigatorIOS
+        ref="nav"
         style={styles.global.mainContainer}
         barTintColor="#2a3744"
         tintColor="#efefef"
         titleTextColor="#efefef"
         initialRoute={{
-          component: CameraRollView,
-          title: 'React Native Test',
+          component: MovieScreen,
+          title: 'Main',
           rightButtonTitle: 'Button',
           onRightButtonPress: () => this.showActionSheet(),
         }}
