@@ -13,9 +13,7 @@ function fetchData(query) {
 
   return fetch(url)
     .then(response => response.json())
-    .then((response) => {
-      return response.results.filter((e) => e.wrapperType !== 'collection');
-    })
+    .then((response) => response.results.filter((e) => e.wrapperType !== 'collection'))
     .catch(response => console.log('ERROR', response));
 }
 

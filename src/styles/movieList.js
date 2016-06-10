@@ -1,4 +1,7 @@
-import { StyleSheet } from 'react-native';
+import {
+  Dimensions,
+  StyleSheet,
+} from 'react-native';
 
 export default StyleSheet.create({
   container: {
@@ -6,7 +9,6 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
     padding: 4,
   },
   rightContainer: {
@@ -34,7 +36,7 @@ export default StyleSheet.create({
     resizeMode: 'contain',
   },
   listView: {
-    paddingTop: 20,
-    backgroundColor: '#F5FCFF',
+    flex: 1,
+    height: Dimensions.get('window').height - 100,
   },
 });

@@ -11,9 +11,6 @@ class CameraView extends React.Component {
     return (
       <View style={styles.camera.container}>
         <Camera
-          ref={(cam) => {
-            this.camera = cam;
-          }}
           style={styles.camera.preview}
           aspect={Camera.constants.Aspect.fill}
         >

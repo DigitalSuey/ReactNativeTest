@@ -48,7 +48,8 @@ export default class MovieListView extends React.Component {
   }
 
   renderSeparator(sectionId, rowId, adjacentRowHighlighted) {
-    var style = styles.movieList.rowSeparator;
+    let style = styles.movieList.rowSeparator;
+
     if (adjacentRowHighlighted) {
       style = [style, styles.movieList.rowSeparatorHighlighted];
     }
@@ -70,6 +71,7 @@ export default class MovieListView extends React.Component {
         dataSource={this.dataSource}
         renderRow={this.renderCell}
         renderSeparator={this.renderSeparator}
+        enableEmptySections
         keyboardDismissMode="on-drag"
         automaticallyAdjustContentInsets={false}
         style={styles.movieList.listView}

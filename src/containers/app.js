@@ -45,7 +45,6 @@ class App extends React.Component {
 
         default:
           break;
-
       }
     });
   }
@@ -59,7 +58,7 @@ class App extends React.Component {
 
   renderCameraRollView() {
     this.refs.nav.push({
-      title: 'Take photo',
+      title: 'Camera Roll',
       component: CameraRollView,
     });
   }
