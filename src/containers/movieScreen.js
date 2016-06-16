@@ -3,6 +3,7 @@ import {
   View,
 } from 'react-native';
 import { connect } from 'react-redux';
+import LoginButton from '../components/loginButton';
 import SearchBar from '../components/searchBar';
 import MovieList from '../components/movieList';
 import search from '../actions' ;
@@ -11,6 +12,7 @@ class MovieScreen extends React.Component {
   render() {
     return (
       <View>
+        <LoginButton />
         <SearchBar
           search={this.props.search}
         />

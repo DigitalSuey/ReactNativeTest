@@ -3,24 +3,26 @@ import {
   ActionSheetIOS,
   AlertIOS,
   NavigatorIOS,
-  StatusBarIOS,
+  StatusBar,
 } from 'react-native';
 import styles from '../styles';
 import MovieScreen from './movieScreen';
 import CameraView from '../components/cameraView';
 import CameraRollView from '../components/cameraRollView';
+import SignupWebView from '../components/signupWebView';
 
 const BUTTONS = [
   'Camera',
   'Camera roll',
   'Alert',
+  'Signup webview',
   'Delete',
   'Cancel',
 ];
-const DESTRUCTIVE_INDEX = 3;
-const CANCEL_INDEX = 4;
+const DESTRUCTIVE_INDEX = 4;
+const CANCEL_INDEX = 5;
 
-StatusBarIOS.setStyle('light-content');
+StatusBar.setBarStyle('light-content');
 
 class App extends React.Component {
   showActionSheet() {
@@ -43,6 +45,10 @@ class App extends React.Component {
           AlertIOS.alert('Alert', 'This is an alert');
           break;
 
+        case 3:
+          this.renderWebview();
+          break;
+
         default:
           break;
       }
@@ -60,6 +66,12 @@ class App extends React.Component {
     this.refs.nav.push({
       title: 'Camera Roll',
       component: CameraRollView,
+    });
+  }
+
+  renderWebview() {
+    this.refs.nav.push({
+      component: SignupWebView,
     });
   }
 
