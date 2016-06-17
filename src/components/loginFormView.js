@@ -1,7 +1,4 @@
-import React, {
-  Component,
-  PropTypes,
-} from 'react';
+import React from 'react';
 import {
   Text,
   TextInput,
@@ -13,10 +10,10 @@ import styles from '../styles';
 class LoginFormView extends React.Component {
   render() {
     return (
-      <View style={styles.movieDetail.mainSection}>
+      <View style={styles.loginView.content}>
         <View style={styles.movieDetail.separator} />
         <TextInput
-          style={styles.searchBar.searchBarInput}
+          style={styles.loginView.textField}
           ref="emailTextField"
           autoCapitalize="none"
           autoFocus
@@ -27,7 +24,7 @@ class LoginFormView extends React.Component {
           enablesReturnKeyAutomatically
         />
         <TextInput
-          style={styles.searchBar.searchBarInput}
+          style={styles.loginView.textField}
           ref="passwordTextField"
           autoCapitalize="none"
           secureTextEntry
@@ -38,7 +35,7 @@ class LoginFormView extends React.Component {
           enablesReturnKeyAutomatically
         />
         <TouchableHighlight>
-          <Text style={styles.movieDetail.iTunesButton}>Submit</Text>
+          <Text style={styles.loginView.loginButton}>Submit</Text>
         </TouchableHighlight>
         <View style={styles.movieDetail.separator} />
       </View>
@@ -65,8 +62,8 @@ class LoginFormView extends React.Component {
 //   onPress={() => Linking.openURL(data.trackViewUrl)}
 // >
 
-LoginFormView.PropTypes = {
-  login: PropTypes.func.isRequired,
+LoginFormView.propTypes = {
+  login: React.PropTypes.func.isRequired,
 };
 
 export default LoginFormView;

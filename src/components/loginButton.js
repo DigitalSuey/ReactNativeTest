@@ -1,38 +1,38 @@
 // IMPORT
-import React, {
-  Component,
-  PropTypes,
-} from 'react';
+import React from 'react';
 
 import {
   Text,
   TouchableHighlight,
+  View,
 } from 'react-native';
 
 import styles from '../styles';
 import loginView from './loginFormView';
 
 // COMPONENTS
-class LoginButton extends Component {
+class LoginButton extends React.Component {
   renderLoginView() {
-    this.navigation.push({
+    this.props.navigator.push({
       component: loginView,
     });
   }
 
   render() {
     return (
-      <TouchableHighlight
-        onPress={() => this.renderLoginView()}
-      >
-        <Text style={styles.loginView.loginButton}>Login</Text>
-      </TouchableHighlight>
+      <View style={styles.loginView.content}>
+        <TouchableHighlight
+          onPress={() => this.renderLoginView()}
+        >
+          <Text style={styles.loginView.loginButton}>Login</Text>
+        </TouchableHighlight>
+      </View>
     );
   }
 }
 
-LoginButton.PropTypes = {
-  navigation: PropTypes.func.isRequired,
+LoginButton.propTypes = {
+  navigator: React.PropTypes.object.isRequired,
 };
 
 export default LoginButton;

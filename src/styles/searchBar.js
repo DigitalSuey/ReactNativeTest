@@ -2,7 +2,6 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   searchBar: {
-    marginTop: 65,
     padding: 3,
     paddingLeft: 8,
     flexDirection: 'row',

@@ -12,7 +12,7 @@ class MovieScreen extends React.Component {
   render() {
     return (
       <View>
-        <LoginButton />
+        <LoginButton {...this.props} />
         <SearchBar
           search={this.props.search}
         />

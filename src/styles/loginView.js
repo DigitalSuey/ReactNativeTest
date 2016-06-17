@@ -1,8 +1,9 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  contentContainer: {
+  content: {
     padding: 10,
+    marginTop: 65,
   },
   separator: {
     backgroundColor: 'rgba(0, 0, 0, 0.1)',
@@ -19,5 +20,11 @@ export default StyleSheet.create({
     borderColor: '#666',
     borderWidth: 1,
     padding: 8,
+  },
+  textField: {
+    fontSize: 15,
+    flex: 1,
+    height: 30,
+    marginBottom: 20,
   },
 });
