@@ -31,7 +31,7 @@ class SearchBar extends Component {
   }
 }
 
-SearchBar.PropTypes = {
+SearchBar.propTypes = {
   search: PropTypes.func.isRequired,
 };
 

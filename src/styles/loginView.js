@@ -4,6 +4,7 @@ export default StyleSheet.create({
   content: {
     padding: 10,
     marginTop: 65,
+
   },
   separator: {
     backgroundColor: 'rgba(0, 0, 0, 0.1)',
@@ -11,6 +12,7 @@ export default StyleSheet.create({
     marginVertical: 10,
   },
   loginButton: {
+    marginBottom: 5,
     backgroundColor: '#FFF',
     fontSize: 16,
     fontWeight: 'bold',

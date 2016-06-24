@@ -4,18 +4,18 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import LoginButton from '../components/loginButton';
+import WebLoginButton from '../components/webLoginButton';
 import SearchBar from '../components/searchBar';
 import MovieList from '../components/movieList';
-import search from '../actions' ;
+import search from '../actions';
 
 class MovieScreen extends React.Component {
   render() {
     return (
       <View>
         <LoginButton {...this.props} />
-        <SearchBar
-          search={this.props.search}
-        />
+        <WebLoginButton {...this.props} />
+        <SearchBar search={this.props.search} />
         <MovieList {...this.props} />
       </View>
     );

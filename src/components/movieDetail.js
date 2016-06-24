@@ -10,7 +10,6 @@ import {
 import styles from '../styles';
 
 export default class MovieDetail extends React.Component {
-
   buyPrice(data) {
     if ((data.trackHdPrice && data.trackPrice) === false) {
       return null;

@@ -22,12 +22,6 @@ export default class MovieListView extends React.Component {
     this.props.search();
   }
 
-  onHighlight() {
-  }
-
-  onDeHighlight() {
-  }
-
   selectRow(data) {
     this.props.navigator.push({
       title: data.trackName,
@@ -41,8 +35,6 @@ export default class MovieListView extends React.Component {
       <MovieCell
         data={data}
         onSelect={() => this.selectRow(data)}
-        onHighlight={this.onHighlight}
-        onDeHighlight={this.onDeHighlight}
       />
     );
   }
