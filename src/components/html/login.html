@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=320, user-scalable=no">
+    <style type="text/css">
+      body {
+        margin: 0;
+        padding: 0;
+        font: arial, sans-serif;
+      }
+      input {
+        margin-top: 10px;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <form onSubmit="submitPressed()">
+      <input type="email" name="emailTextField" placeholder="Email">
+      <input type="password" name="passwordTextField" placeholder="Password">
+      <input type="submit" name="Submit">
+    </form>
+  </body>
+  <script>
+    function submitPressed() {
+      var emailString = document.getElementsByName("emailTextField")[0].value;
+      var passwordString = document.getElementsByName("passwordTextField")[0].value;
+
+      if (emailString === ""  || passwordString === "") {
+        return alert("Please fill in both fields");
+      }
+
+      const data = {
+        email: emailString,
+        password: passwordString,
+      }
+
+      login(data);
+    }
+
+    function login(data) {
+      const API_URL = "https://m.huggies.com.au/api/v1/sessions";
+
+      // Fire API request
+      // var request = new XMLHttpRequest();
+      // request.open('POST', API_URL, true);
+      // request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+      // request.send(data);
+      //
+      // request.onreadystatechange = function () {
+      //   var DONE = 4; // readyState 4 means the request is done.
+      //   var OK = 200; // status 200 is a successful return.
+      //   if (xhr.readyState === DONE) {
+      //     if (xhr.status === OK)
+      //       alert(xhr.responseText); // 'This is the returned text.'
+      //     } else {
+      //       alert('Error: ' + xhr.status); // An error occurred during the request.
+      //     }
+      //   }
+      // };
+    }
+  </script>
+</html>
