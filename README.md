@@ -22,6 +22,7 @@ Basic react-native test application using NavigatorIOS, AlertIOS, ActionSheetIOS
 ### Components:
 * [react-native-camera](https://github.com/lwansbrough/react-native-camera)
 * [react-redux](https://github.com/reactjs/react-redux)
+* [react-native-router-flux](https://github.com/aksonov/react-native-router-flux)
 
 ### Docs & Examples:
 * [React Native Docs](https://facebook.github.io/react-native/docs/getting-started.html)
@@ -42,3 +43,5 @@ Basic react-native test application using NavigatorIOS, AlertIOS, ActionSheetIOS
 * [react-native-image-picker](https://github.com/marcshilling/react-native-image-picker)
 * [accessing-iphone-camera-roll-images-react-native](https://thebhwgroup.com/blog/accessing-iphone-camera-roll-images-react-native)
 * [react-native-webview-bridge](https://github.com/alinz/react-native-webview-bridge)
+* [rules for organizing redux application/](http://jaysoo.ca/2016/02/28/organizing-redux-application/)
+* [Ducks Redux](https://github.com/erikras/ducks-modular-redux)
